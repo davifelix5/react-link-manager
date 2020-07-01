@@ -2,26 +2,33 @@ import React from 'react'
 
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
+import SignIn from './pages/auth/SignIn'
+import SignUp from './pages/auth/SignUp'
+import Links from './pages/manage/Links'
+import CreateLink from './pages/manage/CreateLink'
+import EditLink from './pages/manage/EditLink'
+import Home from './pages/Home'
+
 const App = () => (
 	<BrowserRouter>
 		<div>
 			<nav>
-				<ul>
-					<li><Link to="/sign-in" >Fazer Login</Link></li>
-					<li><Link to="/sign-up" >Criar Conta</Link></li>
-					<li><Link to="/manage/links/create-link" >Adicionar Link</Link></li>
-					<li><Link to="/manage/links/edit-links" >Gerenciar links</Link></li>
-					<li><Link to="/manage/links" >Meus Links</Link></li>
+				<ul className="list-group list-group-horizontal">
+					<li className="list-group-item"><Link to="/sign-in" >Fazer Login</Link></li>
+					<li className="list-group-item"><Link to="/sign-up" >Criar Conta</Link></li>
+					<li className="list-group-item"><Link to="/manage/links/create-link" >Adicionar Link</Link></li>
+					<li className="list-group-item"><Link to="/manage/links/edit-links" >Gerenciar links</Link></li>
+					<li className="list-group-item"><Link to="/manage/links" >Meus Links</Link></li>
 				</ul>
 			</nav>
 
 			<Switch>
-				<Route path="/sign-in"><h1>Fazer login</h1></Route>
-				<Route path="/sign-up"><h1>Criar conta</h1></Route>
-				<Route path="/manage/links/create-link"><h1>Criar links</h1></Route>
-				<Route path="/manage/links/edit-links"><h1>Editar link</h1></Route>
-				<Route path="/manage/links"><h1>Links</h1></Route>
-				<Route path="/"><h1>Home</h1></Route>
+				<Route component={SignIn} path="/sign-in" />
+				<Route component={SignUp} path="/sign-up" />
+				<Route component={CreateLink} path="/manage/links/create-link" />
+				<Route component={EditLink} path="/manage/links/edit-links" />
+				<Route component={Links} path="/manage/links" />
+				<Route component={Home} path="/" />
 			</Switch>
 		</div>
 	</BrowserRouter>
