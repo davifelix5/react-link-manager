@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { signIn } from './SignInActions'
@@ -15,7 +15,9 @@ const SignIn = (props) => {
         signIn(data)
     }
 
-    console.log('**SignIn.account: ', account)
+    if (account) {
+        return <Redirect to="manage/links" />
+    }
 
     return (
         <div className="container h-100 pt-5">
