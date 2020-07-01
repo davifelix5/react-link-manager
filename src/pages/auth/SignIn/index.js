@@ -10,7 +10,9 @@ const SignIn = (props) => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        signIn({ email: 'teste454@teste.com', password: '1234135' })
+        const formData = new FormData(event.target)
+        const data = Object.fromEntries(formData)
+        signIn(data)
     }
 
     console.log('**SignIn.account: ', account)

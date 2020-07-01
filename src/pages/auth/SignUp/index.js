@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import { signUp } from './SignUpActions'
 
-const SignUp = ({ signUp }) => {
+const SignUp = (props) => {
+
+    const { account, signUp } = props
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -12,6 +14,8 @@ const SignUp = ({ signUp }) => {
         const data = Object.fromEntries(formData)
         signUp(data)
     }
+
+    console.log('**SignUp.account: ', account)
 
     return (
         <div className="container h-100 pt-5">
