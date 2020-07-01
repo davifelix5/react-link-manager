@@ -14,6 +14,8 @@ export const removeAccount = () => removeCookie(COOKIE_ACCOUNT_NAME)
 
 export const setToken = token => setCookie(COOKIE_TOKEN_NAME, token, options)
 export const getToken = () => getCookie(COOKIE_TOKEN_NAME)
+export const removeToken = () => removeCookie(COOKIE_TOKEN_NAME)
 
 export const setRefreshToken = refreshToken => setCookie(COOKIE_REFESH_TOKEN_NAME, refreshToken, options)
 export const getRefreshToken = () => getCookie(COOKIE_REFESH_TOKEN_NAME)
+export const removeRefreshToken = () => removeCookie(COOKIE_REFESH_TOKEN_NAME)
