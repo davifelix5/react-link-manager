@@ -8,7 +8,7 @@ const App = () => (
 			<nav>
 				<ul>
 					<li><Link to="/sign-in" >Fazer Login</Link></li>
-					<li><Link to="/sign-up" >Criar Cont</Link>a</li>
+					<li><Link to="/sign-up" >Criar Conta</Link></li>
 					<li><Link to="/manage/links/create-link" >Adicionar Link</Link></li>
 					<li><Link to="/manage/links/edit-links" >Gerenciar links</Link></li>
 					<li><Link to="/manage/links" >Meus Links</Link></li>
