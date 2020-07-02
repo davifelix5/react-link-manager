@@ -1,4 +1,5 @@
 import React from 'react'
+import { getFormData } from '../../../helpers/form'
 
 import { Link, Redirect } from 'react-router-dom'
 
@@ -9,9 +10,7 @@ const SignIn = (props) => {
     const { account, signIn } = props
 
     const handleSubmit = event => {
-        event.preventDefault()
-        const formData = new FormData(event.target)
-        const data = Object.fromEntries(formData)
+        const data = getFormData(event)
         signIn(data)
     }
 
