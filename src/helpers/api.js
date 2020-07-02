@@ -15,18 +15,40 @@ export const apiPost = async (url, body) => {
         headers: getHeaders()
     }
 
-    const result = await api.post(url, body, options)
+    try {
+        return await api.post(url, body, options)
+    }
 
-    return result
+    catch (error) {
+        return error.response
+    }
+
+}
+
+export const apiGet = async (url) => {
+
+    const options = {
+        headers: getHeaders()
+    }
+
+    try {
+        return await api.get(url, options)
+    }
+    catch (error) {
+        return error.response
+    }
+
 }
 
 export const apiLogin = async credentials => {
     const { email: username, password } = credentials
-    const result = await api.get('auth/sign-in', {
-        auth: {
-            username,
-            password
-        }
-    })
-    return result
+
+    try {
+        const options = { auth: { username, password } }
+        return await api.get('auth/sign-in', options)
+
+    } catch (error) {
+        return error.response
+    }
+
 }
