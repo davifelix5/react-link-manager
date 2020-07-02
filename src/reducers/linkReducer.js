@@ -1,4 +1,12 @@
-import { CREATE_LINK, FETCH_LINKS, GET_LINK, UPDATE_LINK, RESET_LINKS, SET_REMOVE_LINK } from '../actions/linkActions'
+import {
+    CREATE_LINK,
+    FETCH_LINKS,
+    GET_LINK,
+    UPDATE_LINK,
+    RESET_LINKS,
+    SET_REMOVE_LINK,
+    REMOVE_LINK
+} from '../actions/linkActions'
 
 const initialState = {
     link: null,
@@ -37,6 +45,14 @@ export default function (state = initialState, action) {
         }
         case SET_REMOVE_LINK: {
             return { ...state, linkToRemove: payload }
+        }
+        case REMOVE_LINK: {
+            const response = payload ? payload.data : null
+            const linkToRemove = state.linkToRemove
+            const links = state.links.filter(link => link.id !== linkToRemove.id)
+            console.log('linkReducer.REMOVE_LINK.response: ', response)
+
+            return { ...state, linkToRemove: null, links }
         }
         default:
             return state

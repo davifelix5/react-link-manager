@@ -58,7 +58,6 @@ export const apiDelete = async url => {
     const options = {
         headers: getHeaders()
     }
-
     try {
         return await api.delete(url, options)
     }
