@@ -1,7 +1,12 @@
 import api from '../services/api'
+import { getToken } from './account'
 
 const getHeaders = () => {
-    return {}
+    const token = getToken()
+    if (!token) return {}
+    return {
+        Authorization: `Bearer ${token}`
+    }
 }
 
 export const apiPost = async (url, body) => {

@@ -1,15 +1,32 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import Layout from '../../layouts/ManageLayout'
+import { getFormData } from '../../../helpers/form'
+import { createLink } from '../../../actions/linkActions'
+import { connect } from 'react-redux'
 
-const CreateLink = () => {
+const CreateLink = ({ link, createLink }) => {
+
+	const handleSubmit = e => {
+		const data = getFormData(e)
+		console.log('CreateLink.formData: ', data)
+		createLink(data)
+	}
+
+	console.log('CreateLink.link: ', link)
+
+	if (link) {
+		return <Redirect to="manage/links" />
+	}
+
 	return (
 		<Layout>
 			<h1>Adicionar link</h1>
 			<div>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<div className="form-group">
 						<label htmlFor="nome">Nome</label>
-						<input className="form-control" type="text" name="nome" id="nome" />
+						<input className="form-control" type="text" name="label" id="name" />
 					</div>
 					<div className="form-group">
 						<label htmlFor="url">URL</label>
@@ -31,4 +48,10 @@ const CreateLink = () => {
 	)
 }
 
-export default CreateLink
+const mapStateToProps = state => {
+	return {
+		link: state.link.link
+	}
+}
+
+export default connect(mapStateToProps, { createLink })(CreateLink)
