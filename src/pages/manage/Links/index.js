@@ -5,15 +5,17 @@ import { fetchLinks } from '../../../actions/linkActions'
 import Layout from '../../layouts/ManageLayout'
 
 import { connect } from 'react-redux'
+import { resetLinks } from '../../../actions/linkActions'
 
-const Links = ({ links, fetchLinks }) => {
+const Links = ({ links, fetchLinks, resetLinks }) => {
 
     useEffect(() => {
-        console.log('Use effect executed')
         fetchLinks()
     }, [fetchLinks])
 
-    console.log('Links.links: ', links)
+    useEffect(() => {
+        resetLinks()
+    }, [resetLinks])
 
     return (
         <Layout>
@@ -23,7 +25,7 @@ const Links = ({ links, fetchLinks }) => {
                 </div>
 
                 <div className="col text-right align-self-bottom pt-2">
-                    <Link to="manage/links/add-link" className="btn btn-primary">
+                    <Link to="/manage/links/create-link" className="btn btn-primary">
                         Add
                     </Link>
                 </div>
@@ -52,4 +54,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchLinks })(Links)
+export default connect(mapStateToProps, { fetchLinks, resetLinks })(Links)

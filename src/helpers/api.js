@@ -40,6 +40,20 @@ export const apiGet = async (url) => {
 
 }
 
+export const apiPut = async (url, body) => {
+    const options = {
+        headers: getHeaders()
+    }
+
+    try {
+        return await api.put(url, body, options)
+    }
+    catch (error) {
+        return error.response
+    }
+
+}
+
 export const apiLogin = async credentials => {
     const { email: username, password } = credentials
 

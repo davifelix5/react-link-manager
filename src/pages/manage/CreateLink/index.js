@@ -6,7 +6,6 @@ import { createLink } from '../../../actions/linkActions'
 import { connect } from 'react-redux'
 
 const CreateLink = ({ link, createLink }) => {
-
 	const handleSubmit = e => {
 		const data = getFormData(e)
 		console.log('CreateLink.formData: ', data)
