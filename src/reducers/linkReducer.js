@@ -1,4 +1,4 @@
-import { CREATE_LINK, FETCH_LINKS } from '../actions/linkActions'
+import { CREATE_LINK, FETCH_LINKS, GET_LINK } from '../actions/linkActions'
 
 const initialState = {
     link: null,
@@ -11,21 +11,22 @@ export default function (state = initialState, action) {
     const { payload, type } = action
 
     switch (type) {
-        case CREATE_LINK:
+        case CREATE_LINK: {
 
             const link = payload ? payload.data : null
 
-            console.log('linkReducer.CREATE_LINK: ', payload)
-
             return { ...state, link }
-
-        case FETCH_LINKS:
+        }
+        case FETCH_LINKS: {
             const links = payload ? payload.data : null
 
-            console.log('linkRedurcer.FETCH_LINKS: ', links)
-
             return { ...state, links }
+        }
+        case GET_LINK: {
+            const link = payload ? payload.data : null
 
+            return { ...state, link }
+        }
         default:
             return state
     }

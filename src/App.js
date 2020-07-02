@@ -27,7 +27,7 @@ const App = ({ initAccount }) => {
 						<li className="list-group-item"><Link to="/sign-in" >Fazer Login</Link></li>
 						<li className="list-group-item"><Link to="/sign-up" >Criar Conta</Link></li>
 						<li className="list-group-item"><Link to="/manage/links/create-link" >Adicionar Link</Link></li>
-						<li className="list-group-item"><Link to="/manage/links/edit-links" >Gerenciar links</Link></li>
+						<li className="list-group-item"><Link to="/manage/links/edit-link" >Gerenciar links</Link></li>
 						<li className="list-group-item"><Link to="/manage/links" >Meus Links</Link></li>
 					</ul>
 				</nav>
@@ -36,7 +36,7 @@ const App = ({ initAccount }) => {
 					<Route component={SignIn} path="/sign-in" />
 					<Route component={SignUp} path="/sign-up" />
 					<Route component={CreateLink} path="/manage/links/create-link" />
-					<Route component={EditLink} path="/manage/links/edit-links" />
+					<Route component={EditLink} path="/manage/links/edit-link/:id" />
 					<Route component={Links} path="/manage/links" />
 					<Route component={Home} path="/" />
 				</Switch>
