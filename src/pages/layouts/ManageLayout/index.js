@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signOut } from '../../../actions/accountActions'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory, Link } from 'react-router-dom'
 
 const ManageLayuot = ({ children, signOut, account }) => {
+
+    const history = useHistory()
 
     if (!account) {
         return <Redirect to='/auth/sign-in' />
@@ -13,13 +15,17 @@ const ManageLayuot = ({ children, signOut, account }) => {
         signOut()
     }
 
+    const handleGoBack = () => {
+        history.goBack()
+    }
+
     return (
         <div className="layout">
             <nav className="navbar navbar-expand-lg bg-primary text-ligth">
                 <div className="container d-flex w-100 justify-content-between">
-                    <div><span>BACK</span></div>
-                    <div className="text-center"><strong>Links</strong></div>
-                    <div><button className="btn btn-clear" onClick={handleSignOut}>EXIT</button ></div>
+                    <div><button className="btn btn-clear" onClick={handleGoBack}>Voltar</button></div>
+                    <Link className="text-center" to="/">Meus links</Link>
+                    <div><button className="btn btn-clear" onClick={handleSignOut}>Sair</button ></div>
                 </div>
             </nav>
             <div className="container">{children}</div>

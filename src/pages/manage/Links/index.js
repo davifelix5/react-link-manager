@@ -36,7 +36,7 @@ const Links = ({ links, fetchLinks, resetLinks, setLinkToRemove, linkToRemove, r
 
                 <div className="col text-right align-self-bottom pt-2">
                     <Link to="/manage/links/create-link" className="btn btn-primary">
-                        Add
+                        Novo link
                     </Link>
                 </div>
             </div>
