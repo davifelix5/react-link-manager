@@ -5,9 +5,9 @@ import { fetchLinks } from '../../../actions/linkActions'
 import Layout from '../../layouts/ManageLayout'
 
 import { connect } from 'react-redux'
-import { resetLinks } from '../../../actions/linkActions'
+import { resetLinks, setLinkToRemove } from '../../../actions/linkActions'
 
-const Links = ({ links, fetchLinks, resetLinks }) => {
+const Links = ({ links, fetchLinks, resetLinks, setLinkToRemove, linkToRemove }) => {
 
     useEffect(() => {
         fetchLinks()
@@ -16,6 +16,8 @@ const Links = ({ links, fetchLinks, resetLinks }) => {
     useEffect(() => {
         resetLinks()
     }, [resetLinks])
+
+    console.log('Links.linkToRemove: ', linkToRemove)
 
     return (
         <Layout>
@@ -31,27 +33,35 @@ const Links = ({ links, fetchLinks, resetLinks }) => {
                 </div>
             </div>
 
-            {links && links.length ? links.map(link => (
-                <div className="py-2 px-3 d-flex flex-row justify-content beetween" key={link.id}>
-                    <div className="pr-3"><img src={link.image || 'https://via.placeholder.com/100'} alt={link.label} /></div>
-                    <div className="align-self-center">
-                        <span className="text-primary clearfix">{link.label}</span>
-                        <span className="text-primary clearfix">{link.url}</span>
+            {links && links.length ? links.map(link => {
+
+                const handleDeleteClick = () => setLinkToRemove(link)
+
+                const extraBorder = linkToRemove && linkToRemove.id === link.id ? 'border border-danger rounded' : 'border border-transparent'
+
+                return (
+                    <div className={`py-2 px-3 d-flex flex-row justify-content beetween ${extraBorder}`} key={link.id}>
+                        <div className="pr-3"><img src={link.image || 'https://via.placeholder.com/100'} alt={link.label} /></div>
+                        <div className="align-self-center">
+                            <span className="text-primary clearfix">{link.label}</span>
+                            <span className="text-primary clearfix">{link.url}</span>
+                        </div>
+                        <div className="ml-auto p-2 clearfix">
+                            <Link to={`/manage/links/edit-link/${link.id}`}>Edit</Link>
+                            <button className="btn btn-clear" onClick={handleDeleteClick}>Delete</button>
+                        </div>
                     </div>
-                    <div className="ml-auto p-2 clearfix">
-                        <Link to={`/manage/links/edit-link/${link.id}`}>Edit</Link>
-                        <span>Delete</span>
-                    </div>
-                </div>
-            )) : <div>Não há links </div>}
+                )
+            }) : <div>Não há links </div>}
         </Layout>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        links: state.link.links
+        links: state.link.links,
+        linkToRemove: state.link.linkToRemove
     }
 }
 
-export default connect(mapStateToProps, { fetchLinks, resetLinks })(Links)
+export default connect(mapStateToProps, { fetchLinks, resetLinks, setLinkToRemove })(Links)

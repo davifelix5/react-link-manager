@@ -1,4 +1,4 @@
-import { CREATE_LINK, FETCH_LINKS, GET_LINK, UPDATE_LINK, RESET_LINKS } from '../actions/linkActions'
+import { CREATE_LINK, FETCH_LINKS, GET_LINK, UPDATE_LINK, RESET_LINKS, SET_REMOVE_LINK } from '../actions/linkActions'
 
 const initialState = {
     link: null,
@@ -34,6 +34,9 @@ export default function (state = initialState, action) {
         }
         case RESET_LINKS: {
             return { ...state, newLink: null, link: null }
+        }
+        case SET_REMOVE_LINK: {
+            return { ...state, linkToRemove: payload }
         }
         default:
             return state

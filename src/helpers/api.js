@@ -54,6 +54,19 @@ export const apiPut = async (url, body) => {
 
 }
 
+export const apiDelete = async url => {
+    const options = {
+        headers: getHeaders()
+    }
+
+    try {
+        return await api.delete(url, options)
+    }
+    catch (error) {
+        return error.response
+    }
+}
+
 export const apiLogin = async credentials => {
     const { email: username, password } = credentials
 
