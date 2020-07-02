@@ -5,6 +5,7 @@ import { apiLogin, apiPost } from '../helpers/api'
 export const SIGN_IN = 'SIGN_IN'  // Evitar erros de digitação
 export const SIGN_UP = 'SIGN_UP'  // Evitar erros de digitação
 export const SIGN_OUT = 'SIGN_OUT'  // Evitar erros de digitação
+export const INIT_ACCOUNT = 'INIT_ACCOUNT'
 
 
 export const signIn = async data => {
@@ -21,3 +22,6 @@ export const signOut = () => {
     return { type: SIGN_OUT, payload: {} }
 }
 
+export const initAccount = () => {
+    return { type: INIT_ACCOUNT, payload: {} }
+}
