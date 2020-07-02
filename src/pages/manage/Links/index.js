@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { fetchLinks } from '../../../actions/linkActions'
 
 import Layout from '../../layouts/ManageLayout'
+import DeleteModal from '../../../components/DeleteModal'
 
 import { connect } from 'react-redux'
 import { resetLinks, setLinkToRemove, removeLink } from '../../../actions/linkActions'
@@ -25,8 +26,6 @@ const Links = ({ links, fetchLinks, resetLinks, setLinkToRemove, linkToRemove, r
     useEffect(() => {
         resetLinks()
     }, [resetLinks])
-
-    console.log('Links.linkToRemove: ', linkToRemove)
 
     return (
         <Layout>
@@ -63,18 +62,7 @@ const Links = ({ links, fetchLinks, resetLinks, setLinkToRemove, linkToRemove, r
                 )
             }) : <div> Não há links </div>}
 
-            {linkToRemove && (
-                <div className="alert alert-danger rounded float-center shadow-bold">
-                    <h4 className="alert-heading">Confimação</h4>
-                    <p>Tem certeza que deseja deletar? Essa ação NÃO pode ser desfeita</p>
-                    <hr />
-                    <div className="d-flex justify-content-end">
-                        <button className="btn btn-outline-light mr-3" onClick={cancelDelete}>Cancel</button>
-                        <button className="btn btn-danger" onClick={confirmDelete}>Delete</button>
-                    </div>
-                </div>
-            )}
-
+            {linkToRemove && <DeleteModal confirmOperation={confirmDelete} cancelOperation={cancelDelete} />}
 
         </Layout>
     )

@@ -8,11 +8,8 @@ import { connect } from 'react-redux'
 const CreateLink = ({ link, createLink }) => {
 	const handleSubmit = e => {
 		const data = getFormData(e)
-		console.log('CreateLink.formData: ', data)
 		createLink(data)
 	}
-
-	console.log('CreateLink.link: ', link)
 
 	if (link) {
 		return <Redirect to="manage/links" />

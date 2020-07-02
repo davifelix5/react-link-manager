@@ -37,7 +37,6 @@ export default function (state = initialState, action) {
         }
         case UPDATE_LINK: {
             const newLink = payload ? payload.data : null
-            console.log('linkReducer.UPDAte-LINK: ', newLink)
             return { ...state, newLink }
         }
         case RESET_LINKS: {
@@ -47,10 +46,8 @@ export default function (state = initialState, action) {
             return { ...state, linkToRemove: payload }
         }
         case REMOVE_LINK: {
-            const response = payload ? payload.data : null
             const linkToRemove = state.linkToRemove
             const links = state.links.filter(link => link.id !== linkToRemove.id)
-            console.log('linkReducer.REMOVE_LINK.response: ', response)
 
             return { ...state, linkToRemove: null, links }
         }
