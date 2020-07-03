@@ -42,7 +42,7 @@ const EditLink = ({ link, getLink, updateLink, newLink }) => {
                             <button type="submit" className="btn btn-primary btn-round">Confirmar</button>
                         </div>
                     </form>
-                ) : <div>Esse link não existe</div>}
+                ) : <div>Carregando...</div>}
 
             </div>
         </Layout>
