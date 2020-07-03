@@ -1,15 +1,8 @@
 import api from '../services/api'
-import { getToken } from './account'
-import { formatSeconds } from './datetime'
-import { getTokenExpire } from './jwt'
+import { getToken, getRefreshToken } from './account'
 
 const getHeaders = () => {
     const token = getToken()
-    const expires = getTokenExpire(token)
-
-    const timeToExpire = formatSeconds(expires)
-
-    console.log('getHeaders.timeToExpire: ', timeToExpire)
 
     if (!token) return {}
     return {
@@ -32,6 +25,22 @@ export const apiPost = async (url, body) => {
         return error.response
     }
 
+}
+
+export const apiRefreshToken = async () => {
+    const url = '/auth/refresh'
+    const refreshToken = getRefreshToken()
+    const options = {
+        headers: {
+            Authorization: `Bearer ${refreshToken}`
+        }
+    }
+    try {
+        return await api.post(url, {}, options)
+    }
+    catch (error) {
+        return error.response
+    }
 }
 
 export const apiGet = async (url) => {

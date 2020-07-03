@@ -1,11 +1,12 @@
-import { apiLogin, apiPost } from '../helpers/api'
+import { apiLogin, apiPost, apiRefreshToken } from '../helpers/api'
 
 // Action é um função que retorna um objeto com type e payload
 
 export const SIGN_IN = 'SIGN_IN'  // Evitar erros de digitação
-export const SIGN_UP = 'SIGN_UP'  // Evitar erros de digitação
-export const SIGN_OUT = 'SIGN_OUT'  // Evitar erros de digitação
+export const SIGN_UP = 'SIGN_UP'
+export const SIGN_OUT = 'SIGN_OUT'
 export const INIT_ACCOUNT = 'INIT_ACCOUNT'
+export const REFRESH_TOKEN = 'REFRESH_TOKEN'
 
 
 export const signIn = async data => {
@@ -24,4 +25,9 @@ export const signOut = () => {
 
 export const initAccount = () => {
     return { type: INIT_ACCOUNT, payload: {} }
+}
+
+export const getNewToken = async () => {
+    const { data: payload } = await apiRefreshToken()
+    return { type: REFRESH_TOKEN, payload }
 }
