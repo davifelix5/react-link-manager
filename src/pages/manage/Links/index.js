@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchLinks } from '../../../actions/linkActions'
 
@@ -7,8 +7,11 @@ import DeleteModal from '../../../components/DeleteModal'
 
 import { connect } from 'react-redux'
 import { resetLinks, setLinkToRemove, removeLink } from '../../../actions/linkActions'
+import { apiGetImage } from '../../../helpers/api'
 
 const Links = ({ links, fetchLinks, resetLinks, setLinkToRemove, linkToRemove, removeLink }) => {
+
+    const [image, setImage] = useState('')
 
     const cancelDelete = event => {
         setLinkToRemove(null)
@@ -47,9 +50,15 @@ const Links = ({ links, fetchLinks, resetLinks, setLinkToRemove, linkToRemove, r
 
                 const extraBorder = linkToRemove && linkToRemove.id === link.id ? 'border border-danger rounded' : 'border border-transparent'
 
+                apiGetImage(link.image).then(res => {
+                  setImage(res.data)
+                })
+
+                console.log(image)
+
                 return (
                     <div className={`py-2 px-3 d-flex flex-row justify-content beetween ${extraBorder}`} key={link.id}>
-                        <div className="pr-3"><img src='https://via.placeholder.com/100' alt={link.label} /></div>
+                        <div className="pr-3"><img src={image || 'https://via.placeholder.com/100'} alt={link.label} /></div>
                         <div className="align-self-center">
                             <span className="text-primary clearfix">{link.label}</span>
                             <span className="text-primary clearfix">{link.url}</span>

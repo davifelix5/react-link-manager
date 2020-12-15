@@ -96,3 +96,16 @@ export const apiLogin = async credentials => {
     }
 
 }
+
+export const apiGetImage = async url => {
+  const options = {
+    headers: getHeaders(),
+    responseType: 'blob'
+  }
+  try {
+    return await api.get(url, options)
+  } catch (error) {
+    return error.response
+  }
+
+}
